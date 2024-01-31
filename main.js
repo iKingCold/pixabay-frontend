@@ -4,6 +4,7 @@ let searchBar = document.querySelector("#search");
 let selectedColor = document.querySelector("#colors");
 let form = document.querySelector("#search-form");
 let containerDiv = document.querySelector(".container");
+let currentPage = 1;
 
 form.addEventListener("submit", event => {
     event.preventDefault();
@@ -11,8 +12,20 @@ form.addEventListener("submit", event => {
     FetchPictures();
 })
 
+document.getElementById("next-button").addEventListener("click", () => {
+    currentPage++;
+    FetchPictures();
+});
+
+document.getElementById("previous-button").addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--;
+        FetchPictures();
+    }
+});
+
 async function FetchPictures(){
-    let url = `${apiUrl}?key=${apiKey}&q=${searchBar.value}&colors=${selectedColor.value}`;
+    let url = `${apiUrl}?key=${apiKey}&q=${searchBar.value}&colors=${selectedColor.value}&page=${currentPage}`;
 
     let response = await fetch(url);
     let result = await response.json();
