@@ -7,10 +7,11 @@ let containerDiv = document.querySelector(".container");
 let previousButton = document.querySelector("#previous-button");
 let nextButton = document.querySelector("#next-button");
 let currentPage = 1;
+let originalSearch = ""; //Initerar en tom variabel som kommer spara det initiella sökvärdet. Motverkar bugg vid sid-byte. 
 
 form.addEventListener("submit", event => {
     event.preventDefault();
-
+    originalSearch = searchBar.value;
     FetchPictures();
 })
 
@@ -27,7 +28,7 @@ previousButton.addEventListener("click", () => {
 });
 
 async function FetchPictures(){
-    let url = `${apiUrl}?key=${apiKey}&q=${searchBar.value}&colors=${selectedColor.value}&page=${currentPage}`;
+    let url = `${apiUrl}?key=${apiKey}&q=${originalSearch}&colors=${selectedColor.value}&page=${currentPage}`;
 
     let response = await fetch(url);
     let result = await response.json();
