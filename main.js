@@ -23,7 +23,8 @@ async function FetchPictures(){
 }
 
 function DisplayPictures(result){
-
+    containerDiv.textContent = '';
+    
     for(let i = 0; i < 10; i++){
         let picture = result.hits[i].webformatURL;
         let image = document.createElement("img");
