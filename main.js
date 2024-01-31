@@ -4,6 +4,8 @@ let searchBar = document.querySelector("#search");
 let selectedColor = document.querySelector("#colors");
 let form = document.querySelector("#search-form");
 let containerDiv = document.querySelector(".container");
+let previousButton = document.querySelector("#previous-button");
+let nextButton = document.querySelector("#next-button");
 let currentPage = 1;
 
 form.addEventListener("submit", event => {
@@ -12,12 +14,12 @@ form.addEventListener("submit", event => {
     FetchPictures();
 })
 
-document.getElementById("next-button").addEventListener("click", () => {
+nextButton.addEventListener("click", () => {
     currentPage++;
     FetchPictures();
 });
 
-document.getElementById("previous-button").addEventListener("click", () => {
+previousButton.addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--;
         FetchPictures();
@@ -29,6 +31,13 @@ async function FetchPictures(){
 
     let response = await fetch(url);
     let result = await response.json();
+
+    if(currentPage > 1){
+        previousButton.disabled = false; 
+    }
+    else{
+        previousButton.disabled = true;
+    }
 
     DisplayPictures(result);
 
