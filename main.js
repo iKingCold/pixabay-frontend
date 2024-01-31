@@ -12,6 +12,7 @@ let originalSearch = ""; //Initerar en tom variabel som kommer spara det initiel
 form.addEventListener("submit", event => {
     event.preventDefault();
     originalSearch = searchBar.value;
+    currentPage = 1;
     FetchPictures();
 })
 
