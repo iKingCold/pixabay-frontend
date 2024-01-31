@@ -29,7 +29,7 @@ span {
 }
 
 .container {
-    background-color: black;
+    /*background-color: black;*/
     margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
@@ -40,4 +40,8 @@ span {
     width: 320px;
     height: 260px;
     margin: 14px;
+}
+
+h2, h3{
+    color: white;
 }

@@ -40,9 +40,20 @@ function DisplayPictures(result){
     
     for(let i = 0; i < 10; i++){
         let picture = result.hits[i].webformatURL;
+        let author = result.hits[i].user;
+        let tags = result.hits[i].tags;
+
+        let imageDiv = document.createElement("div")
         let image = document.createElement("img");
+        let tagsText = document.createElement("h2");
+        let authorText = document.createElement("h3");
+        
         image.src = picture;
-        containerDiv.append(image);
+        tagsText.textContent = tags;
+        authorText.textContent = `Taken by: ${author}`;
+        
+        containerDiv.append(imageDiv);
+        imageDiv.append(image, tagsText, authorText);
     }
 }
 
