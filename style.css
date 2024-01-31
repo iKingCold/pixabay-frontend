@@ -28,6 +28,59 @@ span {
     color: rgb(39, 218, 15);   
 }
 
+#search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#colors {
+    margin: 20px;
+}
+
+.input-group {
+    position: relative;
+    margin: 20px 0;
+}
+
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 4%;
+    transform: translateY(-50%);
+    padding: 0 5px;
+    pointer-events: none;
+    font-size: 25px;
+    letter-spacing: 1px;
+    color: #fff;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    transition: .5s;
+}
+
+.input-group input {
+    width: 400px;
+    height: 40px;
+    padding: 0 10px;
+    background: #bd7a7a;
+    border: 1.2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+}
+
+.input-group input:focus~label,
+.input-group input:valid~label {
+    top: 0;
+    font-size: 15px;
+    background: #bd7a7a;
+    border-top: .5px solid #fff;
+    border-radius: 5px;
+}
+
+
+
 .container {
     /*background-color: black;*/
     margin-top: 40px;
