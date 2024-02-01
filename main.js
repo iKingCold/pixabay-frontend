@@ -7,6 +7,7 @@ let containerDiv = document.querySelector(".container");
 let previousButton = document.querySelector("#previous-button");
 let nextButton = document.querySelector("#next-button");
 let currentPage = 1;
+let picturesPerPage = 10;
 let originalSearch = ""; //Initerar en tom variabel som kommer spara det initiella sökvärdet. Motverkar bugg vid sid-byte. 
 let showButtons = document.querySelector(".buttons");
 
@@ -32,16 +33,23 @@ previousButton.addEventListener("click", () => {
 
 
 async function FetchPictures(){
-    let url = `${apiUrl}?key=${apiKey}&q=${originalSearch}&colors=${selectedColor.value}&page=${currentPage}`;
+    let url = `${apiUrl}?key=${apiKey}&q=${originalSearch}&colors=${selectedColor.value}&page=${currentPage}&per_page=${picturesPerPage}`;
 
     let response = await fetch(url);
     let result = await response.json();
+    let totalHits = result.totalHits;
 
     if(currentPage > 1){
         previousButton.disabled = false; 
     }
     else{
         previousButton.disabled = true;
+    }
+    if(currentPage * picturesPerPage >= totalHits){
+        nextButton.disabled = true;
+    }
+    else{
+        nextButton.disabled = false;
     }
 
     DisplayPictures(result);
@@ -52,7 +60,7 @@ async function FetchPictures(){
 function DisplayPictures(result){
     containerDiv.textContent = '';
     
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < picturesPerPage; i++){ //Kanske använda result.totalHits istället för att undvika onödiga iterationer?.
         let picture = result.hits[i].webformatURL;
         let author = result.hits[i].user;
         let tags = result.hits[i].tags;
