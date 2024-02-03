@@ -8,6 +8,7 @@ let previousButton = document.querySelector("#previous-button");
 let nextButton = document.querySelector("#next-button");
 let currentPage = 1;
 let picturesPerPage = 10;
+let remainingPictures;
 let originalSearch = ""; //Initerar en tom variabel som kommer spara det initiella sökvärdet. Motverkar bugg vid sid-byte. 
 let showButtons = document.querySelector(".buttons");
 
@@ -31,7 +32,6 @@ previousButton.addEventListener("click", () => {
     }
 });
 
-
 async function FetchPictures(){
     let url = `${apiUrl}?key=${apiKey}&q=${originalSearch}&colors=${selectedColor.value}&page=${currentPage}&per_page=${picturesPerPage}`;
 
@@ -47,20 +47,20 @@ async function FetchPictures(){
     }
     if(currentPage * picturesPerPage >= totalHits){
         nextButton.disabled = true;
+        remainingPictures = totalHits - ((currentPage - 1) * picturesPerPage); //Sätter remainingPictures till det överblivna när det inte finns (10) bilder att visa. 
     }
     else{
         nextButton.disabled = false;
+        remainingPictures = picturesPerPage; //Sätter remainingPictures till picturesPerPage (10), när det antalet finns tillgängligt. 
     }
 
     DisplayPictures(result);
-
-    console.log(result);
 }
 
 function DisplayPictures(result){
     containerDiv.textContent = '';
-    
-    for(let i = 0; i < picturesPerPage; i++){ //Kanske använda result.totalHits istället för att undvika onödiga iterationer?.
+
+    for(let i = 0; i < remainingPictures; i++){ //Använder remainingPictures för att undvika onödiga iterationer. 
         let picture = result.hits[i].webformatURL;
         let author = result.hits[i].user;
         let tags = result.hits[i].tags;
@@ -78,61 +78,3 @@ function DisplayPictures(result){
         imageDiv.append(image, tagsText, authorText);
     }
 }
-
-
-/*
-Alla API queries.
-q	str	A URL encoded search term. If omitted, all images are returned. This value may not exceed 100 characters.
-Example: "yellow+flower"
-
-lang	str	Language code of the language to be searched in.
-Accepted values: cs, da, de, en, es, fr, id, it, hu, nl, no, pl, pt, ro, sk, fi, sv, tr, vi, th, bg, ru, el, ja, ko, zh
-Default: "en"
-
-id	str	Retrieve individual images by ID.
-image_type	str	Filter results by image type.
-Accepted values: "all", "photo", "illustration", "vector"
-Default: "all"
-
-orientation	str	Whether an image is wider than it is tall, or taller than it is wide.
-Accepted values: "all", "horizontal", "vertical"
-Default: "all"
-
-category	str	Filter results by category.
-Accepted values: backgrounds, fashion, nature, science, education, feelings, health, people, 
-religion, places, animals, industry, computer, food, sports, transportation, travel, buildings, business, music
-
-min_width	int	Minimum image width.
-Default: "0"
-
-min_height	int	Minimum image height.
-Default: "0"
-
-colors	str	Filter images by color properties. A comma separated list of values may be used to select multiple properties.
-Accepted values: "grayscale", "transparent", "red", "orange", "yellow", "green", "turquoise", "blue", "lilac", "pink", "white", "gray", "black", "brown"
-
-editors_choice	bool	Select images that have received an Editor's Choice award.
-Accepted values: "true", "false"
-Default: "false"
-
-safesearch	bool	A flag indicating that only images suitable for all ages should be returned.
-Accepted values: "true", "false"
-Default: "false"
-
-order	str	How the results should be ordered.
-Accepted values: "popular", "latest"
-Default: "popular"
-
-page	int	Returned search results are paginated. Use this parameter to select the page number.
-Default: 1
-
-per_page	int	Determine the number of results per page.
-Accepted values: 3 - 200
-Default: 20
-
-callback	string	JSONP callback function name
-
-pretty	bool	Indent JSON output. This option should not be used in production.
-Accepted values: "true", "false"
-Default: "false"
-*/
