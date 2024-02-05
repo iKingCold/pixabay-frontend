@@ -10,11 +10,13 @@ let currentPage = 1;
 let picturesPerPage = 10;
 let remainingPictures;
 let originalSearch = ""; //Initerar en tom variabel som kommer spara det initiella sökvärdet. Motverkar bugg vid sid-byte. 
+let originalColorSearch = "";
 let showButtons = document.querySelector(".buttons");
 
 form.addEventListener("submit", async event => {
     event.preventDefault();
     originalSearch = searchBar.value;
+    originalColorSearch = selectedColor.value;
     currentPage = 1;
     await FetchPictures();
     showButtons.style.display = "flex";
@@ -33,7 +35,7 @@ previousButton.addEventListener("click", () => {
 });
 
 async function FetchPictures(){
-    let url = `${apiUrl}?key=${apiKey}&q=${originalSearch}&colors=${selectedColor.value}&page=${currentPage}&per_page=${picturesPerPage}`;
+    let url = `${apiUrl}?key=${apiKey}&q=${originalSearch}&colors=${originalColorSearch}&page=${currentPage}&per_page=${picturesPerPage}`;
 
     let response = await fetch(url);
     let result = await response.json();
