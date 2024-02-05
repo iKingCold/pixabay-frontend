@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Image Search Engine, using PixaBay's API">
+    <meta name="keywords" content="Image search, search engine, pixabay, pictures">
+    <meta name="author" content="Mikael Flink, Axel Calås">
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <title>Flink & Calås bildsökmotor</title>
+    <title>Flink & Calås Image Search Engine</title>
 </head>
+
 <body>
-    <h1>Flink & Calås <span>Image Search Engine</span></h1>
+    <header>
+        <h1>Flink & Calås <span>Image Search Engine</span></h1>
+    </header>
+    <main>
     <form id="search-form">
         <div class="input-group">
             <input type="text" id="search" name="search" required>
             <label for="">Search</label>
-    </div>
-            <select name="colors" id="colors">
-                <option>Any color</option>
-                <option>grayscale</option>
-                <option>transparent</option>
-                <option>red</option>
-                <option>orange</option>
-                <option>yellow</option>
-                <option>green</option>
-                <option>turquoise</option>
-                <option>blue</option>
-                <option>lilac</option>
-                <option>pink</option>
-                <option>white</option>
-                <option>gray</option>
-                <option>black</option>
-                <option>brown</option>
-            </select>
+        </div>
+        <select name="colors" id="colors">
+            <option>Any color</option>
+            <option>grayscale</option>
+            <option>transparent</option>
+            <option>red</option>
+            <option>orange</option>
+            <option>yellow</option>
+            <option>green</option>
+            <option>turquoise</option>
+            <option>blue</option>
+            <option>lilac</option>
+            <option>pink</option>
+            <option>white</option>
+            <option>gray</option>
+            <option>black</option>
+            <option>brown</option>
+        </select>
         <input type="submit" value="Get me this!">
     </form>
     <div class="container"></div>
     <div class="buttons">
-    <button id="previous-button" disabled>⬅️ Previous</button>
-    <button id="next-button">Next ➡️</button>
-</div>
-
+        <button id="previous-button" disabled>⬅️ Previous</button>
+        <button id="next-button">Next ➡️</button>
+    </div>
+</main>
 </body>
+
 </html>
