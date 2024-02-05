@@ -5,18 +5,23 @@
 }
 
 html {
-    background-image: url(background.jpg);
-    background-size: auto;
+    height: 100%;
 }
 
 body {
+    background-image: url(unnamed.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
     text-align: center;
+    min-height: 100%;
 }
 
 h1 {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 50px;
     margin: 30px;
+    color: white;
 }
 
 span {
@@ -36,6 +41,17 @@ span {
 
 #colors {
     margin: 20px;
+    height: 40px;
+    width: 140px;
+    padding: 0 10px;
+    background: #bd7a7a;
+    border: 1.2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1.2px;
+    margin-left: 33px;
 }
 
 .input-group {
@@ -108,12 +124,14 @@ h2, h3{
 
 #previous-button, #next-button, input[type="submit"]{
     min-width: 100px;
-    min-height: 35px;
+    min-height: 40px;
+    border: 1.2px solid #fff;
+    color: white;
     border-radius: 5px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 20px;
     letter-spacing: 1.4px;
-    color: #320557;
-    margin: 0 10px;
+    margin: 25px 10px;
     padding: 0 20px;
+    background-color: #bd7a7a;
 }
