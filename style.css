@@ -11,7 +11,7 @@ html {
 body {
     background-image: url(unnamed.jpg);
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-attachment: fixed;
     text-align: center;
     min-height: 100%;
@@ -97,9 +97,10 @@ span {
 }
 
 .container {
-    max-width: 70%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    max-width: 90%; 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
     margin: auto;
@@ -111,16 +112,11 @@ span {
     margin: 14px;
 }
 
-.container div:nth-child(9) {
-    grid-column: 2;
+.container div{
+    max-width: 348px;
 }
 
-.container div:nth-child(10) {
-    grid-column: 3;
-}
-
-h2,
-h3 {
+h2, h3 {
     color: white;
 }
 
